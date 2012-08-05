@@ -1,0 +1,12 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /				            controllers.Application.index
+GET     /liveTweets         		controllers.Application.liveTweets(query1: String, query2: String)
+GET     /comet/:query1/:query2      controllers.Application.comet(query1: String, query2: String)
+
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)

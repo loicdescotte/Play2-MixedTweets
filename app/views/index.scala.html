@@ -1,0 +1,24 @@
+@(query1: String, query2: String)
+
+@main("Welcome to Play 2.0") {
+	
+	<h2>Live mixed-tweets</h2>
+	<p>Change Url parameters for new search</p>
+	<h3> <span id="message1"></span> </h3>
+	<h3> <span id="message2"></span> </h3>
+    
+    
+		<script type="text/javascript" charset="utf-8">
+	        // Called for each Comet message
+	        var messageChanged = function(msg) {
+				if(msg.indexOf('@query1') === 0){
+					$('#message1').html(msg)
+				}
+				else {
+					$('#message2').html(msg)
+				}
+	        }
+	    </script>
+
+	    <iframe id="comet" src="/comet/@query1/@query2" style="visibility: hidden"></iframe>
+}
