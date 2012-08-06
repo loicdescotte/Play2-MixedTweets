@@ -11,7 +11,7 @@
 		<script type="text/javascript" charset="utf-8">
 	        // Called for each Comet message
 	        var messageChanged = function(msg) {
-				if(msg.indexOf('@query1') === 0){
+				if(msg.toLowerCase().indexOf('@query1'.toLowerCase()) === 0){
 					$('#message1').html(msg)
 				}
 				else {

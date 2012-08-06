@@ -20,7 +20,7 @@ object Application extends Controller {
 	  lazy val results2 = getStream(query2)
 
 	  //pipe result 1 and result 2 and push to comet socket	
-	  Ok.stream(results1 >- results2 &> Comet(callback = "parent.messageChanged"))
+	  Ok.stream( (results1 >- results2) &> upperCase &> Comet(callback = "parent.messageChanged"))
   
 	}
 
@@ -31,6 +31,11 @@ object Application extends Controller {
 			})
 		)
 	}
+	
+	val upperCase = Enumeratee.map[String] {
+	    tweet => tweet.map(_.toUpperCase)
+	}
+	
 
 	def liveTweets(query1: String, query2: String) = Action {
 	  Ok(views.html.index(query1, query2))
